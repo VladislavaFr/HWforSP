@@ -19,6 +19,9 @@ elif user_input_ready == "ready":
         else:
             print(f"Неправильно. Правильный ответ: {answers[index]}")
 
-    print(f'Вот и всё! Вы ответили на {correct_answers} вопросов из 3 верно, это {round((correct_answers / 3) * 100), 2} процентов.')
+answers = (correct_answers / 3) * 100
+round_answers = round(answers, 2)
+
+print(f'Вот и всё! Вы ответили на {correct_answers} вопросов из 3 верно, это {round_answers} процентов.')
 
 
