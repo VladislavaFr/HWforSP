@@ -1,39 +1,38 @@
-words_easy = {
-    "family":"семья",
+words_easy = { # словарь для уровня сложности "легкий"
+    "family": "семья",
     "hand": "рука",
-    "people":"люди",
+    "people": "люди",
     "evening": "вечер",
-    "minute":"минута",
+    "minute": "минута",
 }
 
-words_medium = {
-    "believe":"верить",
+words_medium = { # словарь для уровня сложности "средний"
+    "believe": "верить",
     "feel": "чувствовать",
-    "make":"делать",
+    "make": "делать",
     "open": "открывать",
-    "think":"думать",
+    "think": "думать",
 }
 
-words_hard   = {
-    "rural":"деревенский",
+words_hard = { # словарь для уровня сложности "сложный"
+    "rural": "деревенский",
     "fortune": "удача",
-    "exercise":"упражнение",
+    "exercise": "упражнение",
     "suggest": "предлагать",
-    "except":"кроме",
+    "except": "кроме",
+}
+
+levels = { # уровни, которые будет получать пользователь после решения задач
+    0: "Нулевой",
+    1: "Так себе",
+    2: "Можно лучше",
+    3: "Норм",
+    4: "Хорошо",
+    5: "Отлично",
 }
 
 
-levels = {
-   0: "Нулевой",
-   1: "Так себе",
-   2: "Можно лучше",
-   3: "Норм",
-   4: "Хорошо",
-   5: "Отлично",
-}
-
-
-def choose_difficulty(level): #функция выбора сложности уровня
+def choose_difficulty(level):  # функция выбора сложности
     words = {}
     level_selection = input("Выберите уровень сложности (легкий / средний / сложный): ").lower()
     if level_selection == "легкий" or "лёгкий":
@@ -47,7 +46,7 @@ def choose_difficulty(level): #функция выбора сложности у
     return words
 
 
-def play_game(words): #функция для самой игры
+def play_game(words):  # функция основной логики вопросов пользователю
     answers = {}
     for key, value in words.items():
         suggested_word = input(f"{key}, {len(value)} букв, начинается на {value[0]}...").lower()
@@ -60,29 +59,29 @@ def play_game(words): #функция для самой игры
     return answers
 
 
-def display_results(answers): #считает правильные и неправильные ответы
-    true_ans = []
-    false_ans = []
+def display_results(answers):  # функция вывода результатов пользователю
+    right_answers = []
+    wrong_answers = []
     for key, value in answers.items():
         if value:
-            true_ans.append(key)
+            right_answers.append(key)
         else:
-            false_ans.append(key)
+            wrong_answers.append(key)
     print("Правильно отвечены слова:")
-    for true_answer in true_ans:
+    for true_answer in right_answers:
         print(true_answer)
     print("Неправильно отвечены слова:")
-    for false_answer in false_ans:
+    for false_answer in wrong_answers:
         print(false_answer)
 
 
-def calculate_rank(answers): #ранг пользователя
-    range_of_user = 0
+def calculate_rank(answers):  # функция возвращает ранг пользователя на основе его верных ответов
+    correct_answers = 0
     for answer in answers:
         if answers[answer] == True:
-            range_of_user += 1
-    name_of_range = levels[range_of_user]
-    print(f"Ваш ранг: \n{name_of_range}")
+            correct_answers += 1
+    user_rank = levels[correct_answers]
+    return f"Ваш ранг: \n{user_rank}"
 
 
 words = choose_difficulty("легкий")
