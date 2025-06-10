@@ -87,4 +87,5 @@ def calculate_rank(answers):  # функция возвращает ранг п�
 words = choose_difficulty("легкий")
 answers = play_game(words)
 display_results(answers)
-calculate_rank(answers)
+print(calculate_rank(answers))
+
